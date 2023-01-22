@@ -26,6 +26,8 @@
   margin: 30px 0;
 }
 
+
+
 /* Header component styles */
 
 header {
@@ -44,7 +46,10 @@ header {
   justify-content: space-between;
 }
 
+
+
 /* VIN-SEARCH component ctyles */
+
 .vin-search__wrapper {
   position: relative;
 }
@@ -78,10 +83,6 @@ header {
   margin-top: 30px;
 }
 
-.vin-decode__title {
-  
-}
-
 
 
 /* Variableitem component styles */
@@ -106,12 +107,19 @@ header {
 	-webkit-box-orient: vertical;
 }
 
-@media screen and (max-width: 768px) {
 
-}
+
+/* Media Queries */
 
 @media screen and (max-width: 480px) {
+
   .nav {
     margin: 0 auto 30px auto;
   }
+
+  .vin-search__input {
+    font-size: 16px;
+    padding-right: 50px;
+  }
+
 }
