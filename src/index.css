@@ -1,0 +1,41 @@
+/* Font import */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;700&display=swap');
+
+/* Specification */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+}
+
+html {
+  overflow-x: hidden;
+  margin-right: calc(-1 * (100vw - 100%));
+}
+
+input::-webkit-calendar-picker-indicator {
+  opacity: 0;
+}
+
+ul, li {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+
+body {
+  font-family: 'Open Sans', sans-serif;
+  background: #8EC5FC;
+  min-height: 100vh;
+  padding: 5vh 0;
+}
+
+a, a:hover, a:active {
+  outline: none;
+  color: inherit;
+}
+
+button, button:active, button:focus {
+  border: none;
+}
