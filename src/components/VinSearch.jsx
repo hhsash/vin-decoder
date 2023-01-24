@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BsSearch } from 'react-icons/bs'
+import { MdSearch } from 'react-icons/md'
 import Header from './Header'
 import Message from './Message'
 
@@ -34,7 +34,7 @@ const VinSearch = ({ searchVin, setSearchVin, onVinDecode, vinData, recentlyVin,
           className='vin-search__button'
           onClick={onVinDecode}
         >
-          <BsSearch size={20} />
+          <MdSearch size={20} />
         </button>
       </div>
       <div className='vin-decode'>

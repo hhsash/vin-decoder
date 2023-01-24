@@ -4,6 +4,7 @@
   margin: 0 auto;
   padding: 40px 25px;
   background: #FFF;
+  color: #000;
   border-radius: 10px;
   -webkit-box-shadow: 0px 5px 50px 4px rgba(1,1,1,0.3);
   -moz-box-shadow: 0px 5px 50px 4px rgba(1,1,1,0.3);
@@ -70,6 +71,7 @@ header {
 }
 
 .vin-search__button {
+  display: block;
   position: absolute;
   top: 0;
   right: 0;
