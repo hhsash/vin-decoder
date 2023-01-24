@@ -84,7 +84,7 @@ function App() {
       })
     } else {
       setIsSearchLoading(false)
-      errorSearchMessage.current = 'Enter the correct VIN!'
+      errorSearchMessage.current = 'VIN must be 17 characters long!'
       setError(true)
     }
   }
@@ -117,8 +117,8 @@ function App() {
           }
         />
         <Route 
-          path='/variables/:id'
-          element={
+          path = '/variables/:id'
+          element = {
             <VariableItem 
               variables = {variablesData} 
             />

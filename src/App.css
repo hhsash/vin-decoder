@@ -48,7 +48,7 @@ header {
 
 
 
-/* VIN-SEARCH component ctyles */
+/* VinSearch component ctyles */
 
 .vin-search__wrapper {
   position: relative;
@@ -120,6 +120,10 @@ header {
   .vin-search__input {
     font-size: 16px;
     padding-right: 50px;
+  }
+
+  .vin-search__button {
+    padding: 10px 15px;
   }
 
 }
