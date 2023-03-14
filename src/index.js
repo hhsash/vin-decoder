@@ -7,6 +7,7 @@ import "@avtopro/text-input/dist/style.css";
 import "@avtopro/select/dist/style.css";
 import "@avtopro/preloader/dist/style.css";
 import "@avtopro/modal/dist/style.css";
+import "@avtopro/banner/dist/style.css";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(<App />);

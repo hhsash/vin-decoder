@@ -3,8 +3,6 @@ import {
     createBrowserRouter,
     createRoutesFromElements,
     Route,
-    Link,
-    Outlet,
     RouterProvider,
 } from "react-router-dom";
 import "./App.css";
@@ -12,6 +10,8 @@ import VinSearch from "./components/VinSearch";
 import VehicleVariables from "./components/VehicleVariables";
 import Header from "./components/Header";
 import VariableItem from "./components/VariableItem";
+import NotFound from "./components/NotFound";
+import { useCallback } from "react";
 
 function App() {
     const [searchVin, setSearchVin] = useState("");
@@ -23,28 +23,31 @@ function App() {
             : []
     );
     const [isSearchLoading, setIsSearchLoading] = useState(false);
-    const [isVariableLoading, setIsVariableLoading] = useState(false);
-    const [error, setError] = useState(false);
+    const [isVariableLoading, setIsVariableLoading] = useState(true);
+    const [error, setError] = useState(null);
     const respMessage = useRef("");
     const errorSearchMessage = useRef("");
     const errorVariableMessage = useRef("");
 
     //Получаем переменные и описания из API
+    const getData = useCallback(async () => {
+        try {
+            const resp = await fetch(
+                "https://vpic.nhtsa.dot.gov/api/vehicles/getvehiclevariablelist?format=json"
+            );
+            const data = await resp.json();
+            setVariablesData(data.Results);
+            setIsVariableLoading(false);
+        } catch (error) {
+            errorVariableMessage.current =
+                "Error with getting variable list! Error: " + error;
+            setError(error);
+            setIsVariableLoading(false);
+        }
+    }, []);
+
     useEffect(() => {
-        setIsVariableLoading(true);
-        fetch(
-            "https://vpic.nhtsa.dot.gov/api/vehicles/getvehiclevariablelist?format=json"
-        )
-            .then((resp) => resp.json())
-            .then((json) => {
-                setVariablesData(json.Results);
-                setIsVariableLoading(false);
-            })
-            .catch((error) => {
-                errorVariableMessage.current =
-                    "Error with getting variable list! Error: " + error;
-                setIsVariableLoading(false);
-            });
+        getData();
     }, []);
 
     //Получаем недавние VIN из localstorage
@@ -157,6 +160,7 @@ function App() {
                             variables={variablesData}
                             isLoading={isVariableLoading}
                             error={error}
+                            setError={setError}
                             errorMessage={errorVariableMessage.current}
                         />
                     }
@@ -165,6 +169,7 @@ function App() {
                     path="/vin-decoder/variables/:id"
                     element={<VariableItem variables={variablesData} />}
                 />
+                <Route path="*" element={<NotFound />} />
             </Route>
         )
     );
