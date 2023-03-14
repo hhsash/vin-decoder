@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 const VariableItem = ({ variables }) => {
     const { id } = useParams();
-    const item = variables.find(({ ID }) => ID == id);
+    const item = variables.find(({ ID }) => ID === +id);
     if (item === undefined) {
         return;
     }

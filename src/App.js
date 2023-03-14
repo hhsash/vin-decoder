@@ -48,7 +48,7 @@ function App() {
 
     useEffect(() => {
         getData();
-    }, []);
+    }, [getData]);
 
     //Получаем недавние VIN из localstorage
     useEffect(() => {
