@@ -133,7 +133,7 @@ function App() {
     const router = createBrowserRouter(
         createRoutesFromElements(
             <Route
-                path="/vin-decoder"
+                path="/"
                 element={<Header title={"VIN Decoder"} />}
             >
                 <Route
@@ -154,7 +154,7 @@ function App() {
                     }
                 />
                 <Route
-                    path="/vin-decoder/variables"
+                    path="/variables"
                     element={
                         <VehicleVariables
                             variables={variablesData}
@@ -166,7 +166,7 @@ function App() {
                     }
                 />
                 <Route
-                    path="/vin-decoder/variables/:id"
+                    path="/variables/:id"
                     element={<VariableItem variables={variablesData} />}
                 />
                 <Route path="*" element={<NotFound />} />

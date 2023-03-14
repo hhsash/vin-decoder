@@ -28,7 +28,7 @@ const VehicleVariables = ({
             <ul className="variables__list">
                 {variables.map((item) => (
                     <li className="variables__item list__item" key={item.ID}>
-                        <Link to={`/vin-decoder/variables/${item.ID}`}>
+                        <Link to={`/variables/${item.ID}`}>
                             <h4 className="variables__title">{item.Name}</h4>
                         </Link>
                         <div

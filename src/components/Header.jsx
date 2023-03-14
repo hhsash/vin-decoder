@@ -6,8 +6,8 @@ const Header = ({ title }) => {
         <>
             <header className="header">
                 <div className="nav">
-                    <Link to="/vin-decoder">Decode</Link>
-                    <Link to="/vin-decoder/variables">Variables</Link>
+                    <Link to="/">Decode</Link>
+                    <Link to="/variables">Variables</Link>
                 </div>
                 <h1 className="header__title">{title}</h1>
             </header>
