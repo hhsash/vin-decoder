@@ -26,8 +26,6 @@ function App() {
     const [isVariableLoading, setIsVariableLoading] = useState(true);
     const [error, setError] = useState(null);
     const respMessage = useRef("");
-    const errorSearchMessage = useRef("");
-    const errorVariableMessage = useRef("");
 
     //Получаем переменные и описания из API
     const getData = useCallback(async () => {
@@ -39,8 +37,6 @@ function App() {
             setVariablesData(data.Results);
             setIsVariableLoading(false);
         } catch (error) {
-            errorVariableMessage.current =
-                "Error with getting variable list! Error: " + error;
             setError(error);
             setIsVariableLoading(false);
         }
@@ -65,7 +61,8 @@ function App() {
         setError(false);
         setVinData([]);
         respMessage.current = "";
-        if (searchVin.length === 17) {
+        const regexp = /[A-HJ-NPR-Z0-9]{17}/;
+        if (regexp.test(searchVin)) {
             //Отправляем запрос с VIN-кодом
             fetch(
                 "https://vpic.nhtsa.dot.gov/api/vehicles/decodevin/" +
@@ -119,23 +116,17 @@ function App() {
                 })
                 .catch((error) => {
                     setIsSearchLoading(false);
-                    errorSearchMessage.current =
-                        "Error with getting VIN-data! Error: " + error;
                     setError(true);
                 });
         } else {
             setIsSearchLoading(false);
-            errorSearchMessage.current = "VIN must be 17 characters long!";
             setError(true);
         }
     };
 
     const router = createBrowserRouter(
         createRoutesFromElements(
-            <Route
-                path="/vin-decoder"
-                element={<Header title={"VIN Decoder"} />}
-            >
+            <Route path="/" element={<Header title={"VIN Decoder"} />}>
                 <Route
                     index
                     element={
@@ -149,24 +140,22 @@ function App() {
                             respMessage={respMessage.current}
                             error={error}
                             setError={setError}
-                            errorMessage={errorSearchMessage.current}
                         />
                     }
                 />
                 <Route
-                    path="/vin-decoder/variables"
+                    path="/variables"
                     element={
                         <VehicleVariables
                             variables={variablesData}
                             isLoading={isVariableLoading}
                             error={error}
                             setError={setError}
-                            errorMessage={errorVariableMessage.current}
                         />
                     }
                 />
                 <Route
-                    path="/vin-decoder/variables/:id"
+                    path="/variables/:id"
                     element={<VariableItem variables={variablesData} />}
                 />
                 <Route path="*" element={<NotFound />} />

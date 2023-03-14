@@ -58,25 +58,31 @@ header {
     position: relative;
 }
 
+.vin-search__form {
+    display: flex;
+    gap: 15px;
+}
+
 .vin-search__input {
     width: 90%;
+}
+
+.vin-search__button {
+    gap: 10px;
 }
 
 .vin-search-recently {
     margin-top: 30px;
 }
 
-.vin-search-recently__title {
-}
-
 .vin-search-recently__select {
     margin-top: 15px;
 }
 
-.vin-search__button-icon {
-    background: url("@avtopro/icons/dist/svg/loupe_bold.svg");
-    width: 24px;
-    height: 24px;
+.vin-search__button {
+    width: 95px;
+    display: flex;
+    justify-content: space-between;
 }
 
 .vin-decode {
@@ -108,17 +114,32 @@ header {
 
 /* Media Queries */
 
+@media screen and (max-width: 980px) {
+    .vin-search__button {
+        max-width: 50px;
+    }
+
+    .vin-search__button span {
+        display: none;
+    }
+}
+
 @media screen and (max-width: 480px) {
     .nav {
         margin: 0 auto 30px auto;
     }
 
+    .vin-search__form {
+        display: flex;
+        flex-wrap: wrap;
+    }
+
     .vin-search__input {
         font-size: 16px;
-        padding-right: 50px;
+        padding-right: 0;
     }
 
     .vin-search__button {
-        padding: 10px 15px;
+        margin-top: 10px;
     }
 }

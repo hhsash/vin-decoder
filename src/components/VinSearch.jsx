@@ -5,6 +5,7 @@ import TextInput from "@avtopro/text-input/dist/index";
 import Select, { Option } from "@avtopro/select/dist/index";
 import Preloader from "@avtopro/preloader/dist/index";
 import Modal from "@avtopro/modal/dist/index";
+import Search from "../assets/icons/Search";
 
 const VinSearch = ({
     searchVin,
@@ -16,7 +17,6 @@ const VinSearch = ({
     respMessage,
     error,
     setError,
-    errorMessage,
 }) => {
     const handleChange = (string) => {
         setSearchVin(string[0]);
@@ -30,7 +30,11 @@ const VinSearch = ({
     return (
         <div className="vin-search">
             <div className="vin-search__wrapper">
-                <form name="vin" onSubmit={handleSubmit}>
+                <form
+                    name="vin"
+                    onSubmit={handleSubmit}
+                    className="vin-search__form"
+                >
                     <TextInput
                         autoFocus
                         value={searchVin}
@@ -46,8 +50,8 @@ const VinSearch = ({
                         type="submit"
                         className="vin-search__button"
                     >
-                        Search
-                        <i className="vin-search__button-icon"></i>
+                        <span>Search</span>
+                        <Search fill="white" className="vin-search__icon" />
                     </Button>
                 </form>
                 {recentlyVin.length > 0 && (
@@ -83,7 +87,15 @@ const VinSearch = ({
                             onClose={() => setError(false)}
                             closeOnClick={true}
                         >
-                            {errorMessage}
+                            <>
+                                <div className="modwin__caption">
+                                    Wrong VIN!
+                                </div>
+                                <div className="modwin__sub-caption">
+                                    VIN must not contain special characters and
+                                    be 17 characters long.
+                                </div>
+                            </>
                         </Modal>
                     )}
                     <div className="message">
